@@ -15,11 +15,16 @@ class Tooltip extends HTMLElement {
     tooltipIcon.addEventListener('mouseenter', this.showTooltip_.bind(this));
     tooltipIcon.addEventListener('mouseleave', this.hideTooltip_.bind(this));
     this.appendChild(tooltipIcon);
+    this.style.position = 'relative';
   }
 
   showTooltip_() {
     this.tooltipContainer_ = document.createElement('div');
     this.tooltipContainer_.textContent = this.tooltipText_;
+    this.tooltipContainer_.style.backgroundColor = 'black';
+    this.tooltipContainer_.style.color = 'white';
+    this.tooltipContainer_.style.position = 'absolute';
+    this.tooltipContainer_.style.zIndex = '10';
     this.appendChild(this.tooltipContainer_);
   }
 
