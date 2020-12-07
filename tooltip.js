@@ -6,6 +6,14 @@ class Tooltip extends HTMLElement {
     this.tooltipText_ = 'some dummy tooltip text';
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
+    <style>
+        div {
+            background-color: black;
+            color: white;
+            position: absolute;
+            z-index: 10;
+        }
+    </style>
     <slot>Some default</slot>
     <span> (?)</span>`;
   }
@@ -24,10 +32,6 @@ class Tooltip extends HTMLElement {
   showTooltip_() {
     this.tooltipContainer_ = document.createElement('div');
     this.tooltipContainer_.textContent = this.tooltipText_;
-    this.tooltipContainer_.style.backgroundColor = 'black';
-    this.tooltipContainer_.style.color = 'white';
-    this.tooltipContainer_.style.position = 'absolute';
-    this.tooltipContainer_.style.zIndex = '10';
     this.shadowRoot.appendChild(this.tooltipContainer_);
   }
 
