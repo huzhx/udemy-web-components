@@ -8,9 +8,10 @@
   </head>
   <body>
     <template id="huzhx-tooltip-template">
+      <slot>Some default</slot>
       <span>(?)</span>
     </template>
     <p><huzhx-tooltip text="Web components are a set of standards">Web Components</huzhx-tooltip> are awesome!</p>
-    <huzhx-tooltip>Here we go</huzhx-tooltip>
+    <huzhx-tooltip></huzhx-tooltip>
   </body>
 </html>
