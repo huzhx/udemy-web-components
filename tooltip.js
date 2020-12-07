@@ -5,14 +5,15 @@ class Tooltip extends HTMLElement {
     this.tooltipContainer_;
     this.tooltipText_ = 'some dummy tooltip text';
     this.attachShadow({ mode: 'open' });
+    const template = document.querySelector('#huzhx-tooltip-template');
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
     if (this.hasAttribute('text')) {
       this.tooltipText_ = this.getAttribute('text');
     }
-    const tooltipIcon = document.createElement('span');
-    tooltipIcon.textContent = '(?)';
+    const tooltipIcon = this.shadowRoot.querySelector('span');
     tooltipIcon.addEventListener('mouseenter', this.showTooltip_.bind(this));
     tooltipIcon.addEventListener('mouseleave', this.hideTooltip_.bind(this));
     this.shadowRoot.appendChild(tooltipIcon);
