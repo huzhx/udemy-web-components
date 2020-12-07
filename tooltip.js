@@ -4,6 +4,7 @@ class Tooltip extends HTMLElement {
     console.log('created tooltip');
     this.tooltipContainer_;
     this.tooltipText_ = 'some dummy tooltip text';
+    this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
@@ -14,7 +15,7 @@ class Tooltip extends HTMLElement {
     tooltipIcon.textContent = '(?)';
     tooltipIcon.addEventListener('mouseenter', this.showTooltip_.bind(this));
     tooltipIcon.addEventListener('mouseleave', this.hideTooltip_.bind(this));
-    this.appendChild(tooltipIcon);
+    this.shadowRoot.appendChild(tooltipIcon);
     this.style.position = 'relative';
   }
 
@@ -25,11 +26,11 @@ class Tooltip extends HTMLElement {
     this.tooltipContainer_.style.color = 'white';
     this.tooltipContainer_.style.position = 'absolute';
     this.tooltipContainer_.style.zIndex = '10';
-    this.appendChild(this.tooltipContainer_);
+    this.shadowRoot.appendChild(this.tooltipContainer_);
   }
 
   hideTooltip_() {
-    this.removeChild(this.tooltipContainer_);
+    this.shadowRoot.removeChild(this.tooltipContainer_);
   }
 }
 
